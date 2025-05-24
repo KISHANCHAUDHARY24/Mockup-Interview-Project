@@ -1,0 +1,327 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - InterviewAI {% block title %}
+    {% endblock %}    </title>
+
+    <meta name="description" content="Learn about InterviewAI's mission, story, team, and how we're helping job seekers ace their interviews with AI-powered practice.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" href="{% static 'images/logo.svg' %}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+        <a href="{% url 'landing' %}" class="logo">
+            <img src="{% static 'images/logo.svg' %}" alt="InterviewAI">
+        </a>
+        <div class="desktop-nav">
+            <div class="nav_contents">
+                <a href="{% url 'landing' %}" class="nav-link {% if request.resolver_match.url_name == 'landing' %}active{% endif %}">Home</a>
+                <a href="{% url 'guide' %}" class="nav-link {% if request.resolver_match.url_name == 'guide' %}active{% endif %}">How it Works</a>
+                <a href="{% url 'faq' %}" class="nav-link {% if request.resolver_match.url_name == 'faq' %}active{% endif %}">FAQ</a>
+                <a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+                <a href="{% url 'contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+            </div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="btn btn-outline">Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline {% if request.resolver_match.url_name == 'login' %}active{% endif %}">Log in</a>
+                <a href="{% url 'signup' %}" class="btn btn-primary {% if request.resolver_match.url_name == 'signup' %}active{% endif %}">Sign up</a>
+            {% endif %}
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+            <span class="menu-icon"></span>
+        </button>
+    </div>
+    <div class="mobile-nav">
+        <a href="{% url 'landing' %}" class="nav-link {% if request.resolver_match.url_name == 'landing' %}active{% endif %}">Home</a>
+        <a href="{% url 'guide' %}" class="nav-link {% if request.resolver_match.url_name == 'guide' %}active{% endif %}">How it Works</a>
+        <a href="{% url 'faq' %}" class="nav-link {% if request.resolver_match.url_name == 'faq' %}active{% endif %}">FAQ</a>
+        <a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+        <a href="{% url 'contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+        <div class="mobile-buttons">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="btn btn-outline">Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline {% if request.resolver_match.url_name == 'login' %}active{% endif %}">Log in</a>
+                <a href="{% url 'signup' %}" class="btn btn-primary {% if request.resolver_match.url_name == 'signup' %}active{% endif %}">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <section class="hero-section about-hero" data-animate>
+            <div class="container">
+                <h1 class="hero-title">About InterviewAI</h1>
+                <p class="hero-description">
+                    We're on a mission to help job seekers ace their interviews and land their dream jobs through AI-powered practice and personalized feedback.
+                </p>
+            </div>
+        </section>
+
+        <section class="story-section" data-animate>
+            <div class="container">
+                <div class="story-container">
+                    <div class="story-content">
+                        <h2 class="section-title">Our Story</h2>
+                        <p class="story-text">
+                            Founded in 2025 by AI researchers, career coaches, and hiring managers, InterviewAI addresses a universal challenge: even the most qualified candidates can falter in interviews.
+                        </p>
+                        <p class="story-text">
+                            Our founder, Keshav Thapa, faced this struggle while interviewing for tech roles. Despite strong technical skills, interview anxiety held him back. Through dedicated practice, he overcame these hurdles, inspiring InterviewAI’s vision.
+                        </p>
+                        <p class="story-text">
+                            Why should quality interview prep be exclusive? Our AI delivers expert-level feedback at an accessible cost, making preparation available to all.
+                        </p>
+                        <p class="story-text">
+                            After 16 weeks of innovation, InterviewAI emerged as the leading platform for realistic, AI-driven interview practice.
+                        </p>
+                    </div>
+                    <div class="story-image">
+                        <img src="{% static 'images/team discuss.png' %}" alt="Team discussing interview strategies" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-section" data-animate>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Our Mission</h2>
+                    <p class="section-description">
+                        To empower every job seeker with accessible, high-quality interview preparation.
+                    </p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card" data-category="general">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="value-title">Accessibility</h3>
+                        <p class="value-description">
+                            High-quality interview prep for everyone, regardless of background or resources.
+                        </p>
+                    </div>
+                    <div class="value-card" data-category="features">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                        <h3 class="value-title">Innovation</h3>
+                        <p class="value-description">
+                            Pushing AI boundaries for realistic, impactful interview practice.
+                        </p>
+                    </div>
+                    <div class="value-card" data-category="pricing">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="value-title">Empowerment</h3>
+                        <p class="value-description">
+                            Building skills and confidence for career success.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section" data-animate>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-label">Meet Our Team</h2>
+                    <h3 class="section-title">The People Behind InterviewAI</h3>
+                    <p class="section-description">
+                        A diverse team of AI experts, career coaches, and product builders dedicated to your success.
+                    </p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member" data-category="technical">
+                        <div class="team-photo">
+                            <img src="{% static 'images/keshav.png' %}" alt="keshav" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Keshav Thapa</h3>
+                        <p class="team-role">Frontend developer</p>
+                        <p class="team-bio">
+                            Bachloer student and Researcher with 2+ years in machine learning.
+                        </p>
+                        <div class="social-links team-social">
+                            <a href="https://www.linkedin.com/in/keshav-thapa/" class="social-link" aria-label="LinkedIn">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-member" data-category="technical">
+                        <div class="team-photo">
+                            <img src="{% static 'images/kisan.png' %}" alt="kisan" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Kishan Chaudhary</h3>
+                        <p class="team-role">Backend supporter</p>
+                        <p class="team-bio">
+                            College student and learning, specializing in AI systems.
+                        </p>
+                        <div class="social-links team-social">
+                            <a href="https://www.linkedin.com/in/kishan-c-ab8450326/" class="social-link" aria-label="LinkedIn">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-member" data-category="features">
+                        <div class="team-photo">
+                            <img src="{% static 'images/ashish.png' %}" alt="ashish" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Aashish Shrestha</h3>
+                        <p class="team-role">Frontend supporter</p>
+                        <p class="team-bio">
+                            Creative student and Intern at the tech company.
+                        </p>
+                        <div class="social-links team-social">
+                            <a href="https://www.linkedin.com/in/shrestha-aashish/" class="social-link" aria-label="LinkedIn">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-member" data-category="general">
+                        <div class="team-photo">
+                            <img src="{% static 'images/anil.png' %}" alt="anil" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Anil Bohara</h3>
+                        <p class="team-role">Backend Developer</p>
+                        <p class="team-bio">
+                            Student and working at tech company.
+                        </p>
+                        <div class="social-links team-social">
+                            <a href="https://www.linkedin.com/in/anilbohara/" class="social-link" aria-label="LinkedIn">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section" data-animate>
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat" data-category="general">
+                        <p class="stat-number" data-count="50000">0</p>
+                        <p class="stat-label">Users Worldwide</p>
+                    </div>
+                    <div class="stat" data-category="features">
+                        <p class="stat-number" data-count="500000">0</p>
+                        <p class="stat-label">Practice Interviews</p>
+                    </div>
+                    <div class="stat" data-category="pricing">
+                        <p class="stat-number" data-count="85">0</p>
+                        <p class="stat-label">Success Rate</p>
+                    </div>
+                    <div class="stat" data-category="technical">
+                        <p class="stat-number" data-count="30">0</p>
+                        <p class="stat-label">Industry Categories</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" data-animate>
+            <div class="container">
+                <h2 class="cta-title">Join the InterviewAI Community</h2>
+                <p class="cta-description">
+                    Transform your interview skills with AI-driven practice. Start free today!
+                </p>
+                <div class="cta-buttons">
+                    <a href="{% url 'signup' %}" class="btn btn-primary">Get Started Free</a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="{% url 'landing' %}" class="logo">
+                        <img src="{% static 'images/logo.svg' %}" alt="InterviewAI" class="footer-logo">
+                    </a>
+                    <p class="brand-description">
+                        InterviewAI uses advanced AI to prepare you for job interviews with realistic mock interviews and personalized feedback.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="link-list">
+                        <li><a href="{% url 'guide' %}">How it Works</a></li>
+                        <li><a href="{% url 'pricing' %}">Pricing</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        <li><a href="{% url 'blog' %}">Blog</a></li>
+                        <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Company</h3>
+                    <ul class="link-list">
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href=" {% url 'contact' %}">Contact Us</a></li>
+                        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+                        <li><a href="{% url 'terms' %}">Terms of Service</a></li>
+                    </ul>
+                </div>
+            <div class="footer-bottom">
+                <p class="copyright">© <span id="current-year"></span> InterviewAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/about.js' %}"></script>
+</body>
+</html>

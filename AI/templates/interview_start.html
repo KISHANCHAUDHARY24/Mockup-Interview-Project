@@ -1,0 +1,71 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mockup Interview</title>
+    <link rel="icon" href="{% static 'images/logo.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/interview_start.css' %}" />
+    <style>
+        .loading-spinner {
+            display: none;
+            font-size: 16px;
+            color: #007bff;
+            margin-top: 10px;
+        }
+        .loading-spinner.active {
+            display: block;
+        }
+        .audio-controls {
+            margin-top: 10px;
+        }
+        .audio-controls button {
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .audio-controls button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interview Session</h1>
+        <div id="question-container">
+            <p id="question-text">Loading question...</p>
+            <div id="loading-spinner" class="loading-spinner">Loading...</div>
+            <div class="audio-controls">
+                <button id="play-audio" onclick="playQuestion()">Play</button>
+                <button id="pause-audio" onclick="pauseQuestion()" disabled>Pause</button>
+                <button id="resume-audio" onclick="resumeQuestion()" disabled>Resume</button>
+            </div>
+            <audio id="audio-player" controls style="display: none;"></audio>
+        </div>
+        <div id="response-container">
+            <textarea id="text-answer" placeholder="Type your answer here..."></textarea>
+            <div id="audio-recorder">
+                <button id="start-recording" onclick="startRecording()">Start Recording</button>
+                <button id="stop-recording" onclick="stopRecording()" disabled>Stop Recording</button>
+                <p id="recording-status">Not recording</p>
+                <audio id="audio-input" controls></audio>
+            </div>
+            <button id="submit-button" onclick="submitResponse()">Submit</button>
+            <div id="submit-loading" class="loading-spinner">Submitting...</div>
+        </div>
+        <div id="timer">Time Left: <span id="time-left">60</span> seconds</div>
+        <div id="status">Current Question: <span id="current-question">0</span>/10</div>
+        <div id="error" style="color: red;"></div>
+        <div id="success"></div>
+        <div class="interview-card-footer">
+            <a href="{% url 'feedback' %}" id="start-interview" class="btn btn-primary">Finish Interview</a>
+        </div>
+    </div>
+    <script src="{% static 'js/interview_start.js' %}"></script>
+</body>
+</html>
